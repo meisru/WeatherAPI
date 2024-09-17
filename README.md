@@ -1,0 +1,1 @@
+A simple Python program to view a weather report using openweathermap API.
