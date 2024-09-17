@@ -6,18 +6,20 @@ API_ROOT = 'https://api.openweathermap.org'
 API_CITY = '/data/2.5/weather?q='
 
 def fetch_city(query):
+    """ requests.get: Returns a status code, 200 means success, 
+        404 means not found, equal to .status_code
+       .text: To get the JSON-formatted data
+       .json(): To change it from JSON text into a Python dictionary
+       Response variable have a copy of the weather data as a dictionary
+    """
     return requests.get(API_ROOT + API_CITY + query + api.API_KEY).json()
-   # requests.get: Returns a status code, 200 means success, 404 means not found, equal to .status_code
-   # .text: To get the JSON-formatted data
-   # .json(): To change it from JSON text into a Python dictionary
-   # Response variable have a copy of the weather data as a dictionary
 
-# To convert the timestamp to a human-readable time (local time)
 def convert_timestamp(timestamp):
+    """To convert the timestamp to a human-readable time (local time)"""
     return datetime.fromtimestamp(timestamp)
 
 def display_weather(response):
-    # Access the data in the dictionary
+    """Access the data in the dictionary and print it out"""
     city = response['name']
     weather = response['weather'][0]['main']
     temperature = (response['main']['temp'] - 273.15)
@@ -26,7 +28,6 @@ def display_weather(response):
     sunrise_time = convert_timestamp(response['sys']['sunrise']).strftime('%H:%M')
     sunset_time = convert_timestamp(response['sys']['sunset']).strftime('%H:%M')
     date = convert_timestamp(response['dt']).strftime('%d-%m-%Y')
-    # Print the weather report
     print(f"""
     Weather for {city} on {date}: 
     {weather}.
