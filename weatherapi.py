@@ -1,3 +1,5 @@
+# This program is based on code from the Python course by Udacity.
+
 import requests
 from datetime import datetime
 import api
@@ -6,12 +8,6 @@ API_ROOT = 'https://api.openweathermap.org'
 API_CITY = '/data/2.5/weather?q='
 
 def fetch_city(query):
-    """ requests.get: Returns a status code, 200 means success, 
-        404 means not found, equal to .status_code
-       .text: To get the JSON-formatted data
-       .json(): To change it from JSON text into a Python dictionary
-       Response variable have a copy of the weather data as a dictionary
-    """
     return requests.get(API_ROOT + API_CITY + query + api.API_KEY).json()
 
 def convert_timestamp(timestamp):
